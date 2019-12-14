@@ -21,13 +21,11 @@ import feign.codec.EncodeException;
 import feign.codec.Encoder;
 import feign.codec.ErrorDecoder;
 import feign.template.UriUtils;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.*;
 import java.util.Map.Entry;
-
 import static feign.Util.checkArgument;
 import static feign.Util.checkNotNull;
 

@@ -165,11 +165,11 @@ public final class MethodMetadata implements Serializable {
     return indexToExpander;
   }
 
-    public Request.Options getOptions() {
-        return options;
-    }
+  public Request.Options getOptions() {
+    return options;
+  }
 
-    public void setOptions(Request.Options options) {
-        this.options = options;
-    }
+  public void setOptions(Request.Options options) {
+    this.options = options;
+  }
 }

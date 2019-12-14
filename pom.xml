@@ -130,16 +130,16 @@
     </developer>
   </developers>
 
-  <distributionManagement>
-    <repository>
-      <id>bintray</id>
-      <url>https://api.bintray.com/maven/openfeign/maven/feign/;publish=1</url>
-    </repository>
-    <snapshotRepository>
-      <id>jfrog-snapshots</id>
-      <url>http://oss.jfrog.org/artifactory/oss-snapshot-local</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>http://nexus.shunwang.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://nexus.shunwang.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
   <issueManagement>
     <system>Github</system>
@@ -468,47 +468,47 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>com.mycila</groupId>
-        <artifactId>license-maven-plugin</artifactId>
-        <version>${license-maven-plugin.version}</version>
-        <configuration>
-          <!-- session.executionRootDirectory resolves properly even with nested modules -->
-          <header>${main.basedir}/src/etc/header.txt</header>
-          <excludes>
-            <exclude>.travis.yml</exclude>
-            <exclude>.editorconfig</exclude>
-            <exclude>.gitattributes</exclude>
-            <exclude>.gitignore</exclude>
-            <exclude>.mvn/**</exclude>
-            <exclude>mvnw*</exclude>
-            <exclude>etc/header.txt</exclude>
-            <exclude>**/.idea/**</exclude>
-            <exclude>**/target/**</exclude>
-            <exclude>LICENSE</exclude>
-            <exclude>**/*.md</exclude>
-            <exclude>bnd.bnd</exclude>
-            <exclude>src/test/resources/**</exclude>
-            <exclude>src/main/resources/**</exclude>
-          </excludes>
-          <strictCheck>true</strictCheck>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>com.mycila</groupId>
-            <artifactId>license-maven-plugin-git</artifactId>
-            <version>${license-maven-plugin.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>com.mycila</groupId>-->
+        <!--<artifactId>license-maven-plugin</artifactId>-->
+        <!--<version>${license-maven-plugin.version}</version>-->
+        <!--<configuration>-->
+          <!--&lt;!&ndash; session.executionRootDirectory resolves properly even with nested modules &ndash;&gt;-->
+          <!--<header>${main.basedir}/src/etc/header.txt</header>-->
+          <!--<excludes>-->
+            <!--<exclude>.travis.yml</exclude>-->
+            <!--<exclude>.editorconfig</exclude>-->
+            <!--<exclude>.gitattributes</exclude>-->
+            <!--<exclude>.gitignore</exclude>-->
+            <!--<exclude>.mvn/**</exclude>-->
+            <!--<exclude>mvnw*</exclude>-->
+            <!--<exclude>etc/header.txt</exclude>-->
+            <!--<exclude>**/.idea/**</exclude>-->
+            <!--<exclude>**/target/**</exclude>-->
+            <!--<exclude>LICENSE</exclude>-->
+            <!--<exclude>**/*.md</exclude>-->
+            <!--<exclude>bnd.bnd</exclude>-->
+            <!--<exclude>src/test/resources/**</exclude>-->
+            <!--<exclude>src/main/resources/**</exclude>-->
+          <!--</excludes>-->
+          <!--<strictCheck>true</strictCheck>-->
+        <!--</configuration>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<phase>compile</phase>-->
+            <!--<goals>-->
+              <!--<goal>check</goal>-->
+            <!--</goals>-->
+          <!--</execution>-->
+        <!--</executions>-->
+        <!--<dependencies>-->
+          <!--<dependency>-->
+            <!--<groupId>com.mycila</groupId>-->
+            <!--<artifactId>license-maven-plugin-git</artifactId>-->
+            <!--<version>${license-maven-plugin.version}</version>-->
+          <!--</dependency>-->
+        <!--</dependencies>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>com.marvinformatics.formatter</groupId>
         <artifactId>formatter-maven-plugin</artifactId>

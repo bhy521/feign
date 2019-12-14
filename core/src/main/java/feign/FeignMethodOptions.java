@@ -7,9 +7,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface FeignMethodOptions {
-    int connectTimeoutMillis();
+  int connectTimeoutMillis();
 
-    int readTimeoutMillis();
+  int readTimeoutMillis();
 
-    boolean followRedirects() default true;
+  boolean followRedirects() default true;
 }
