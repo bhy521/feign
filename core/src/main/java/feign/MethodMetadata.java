@@ -41,6 +41,7 @@ public final class MethodMetadata implements Serializable {
       new LinkedHashMap<Integer, Class<? extends Expander>>();
   private Map<Integer, Boolean> indexToEncoded = new LinkedHashMap<Integer, Boolean>();
   private transient Map<Integer, Expander> indexToExpander;
+  private Request.Options options;
 
   MethodMetadata() {}
 
@@ -163,4 +164,12 @@ public final class MethodMetadata implements Serializable {
   public Map<Integer, Expander> indexToExpander() {
     return indexToExpander;
   }
+
+    public Request.Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Request.Options options) {
+        this.options = options;
+    }
 }
