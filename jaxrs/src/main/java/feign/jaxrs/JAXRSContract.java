@@ -78,6 +78,8 @@ public class JAXRSContract extends Contract.BaseContract {
                                            Annotation methodAnnotation,
                                            Method method) {
     Class<? extends Annotation> annotationType = methodAnnotation.annotationType();
+    processAnnotationFeignMethodOptions(data, annotationType, method);
+
     HttpMethod http = annotationType.getAnnotation(HttpMethod.class);
     if (http != null) {
       checkState(data.template().method() == null,

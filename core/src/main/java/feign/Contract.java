@@ -13,8 +13,6 @@
  */
 package feign;
 
-import static feign.Util.checkState;
-import static feign.Util.emptyToNull;
 import feign.Request.HttpMethod;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -22,13 +20,11 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static feign.Util.checkState;
+import static feign.Util.emptyToNull;
 
 /**
  * Defines what annotations and values are valid on interfaces.
@@ -188,6 +184,18 @@ public interface Contract {
                                                       Annotation annotation,
                                                       Method method);
 
+    protected void processAnnotationFeignMethodOptions(MethodMetadata data,
+                                                       Class<? extends Annotation> annotationType,
+                                                       Method method) {
+      if (annotationType == FeignMethodOptions.class) {
+        FeignMethodOptions feignMethodOptions =
+            method.getDeclaredAnnotation(FeignMethodOptions.class);
+        Request.Options options = new Request.Options(feignMethodOptions.connectTimeoutMillis(),
+            feignMethodOptions.readTimeoutMillis(), feignMethodOptions.followRedirects());
+        data.setOptions(options);
+      }
+    }
+
     /**
      * @param data metadata collected so far relating to the current java method.
      * @param annotations annotations present on the current parameter annotation.
@@ -233,6 +241,8 @@ public interface Contract {
                                              Annotation methodAnnotation,
                                              Method method) {
       Class<? extends Annotation> annotationType = methodAnnotation.annotationType();
+      processAnnotationFeignMethodOptions(data, annotationType, method);
+
       if (annotationType == RequestLine.class) {
         String requestLine = RequestLine.class.cast(methodAnnotation).value();
         checkState(emptyToNull(requestLine) != null,
